@@ -1,4 +1,4 @@
-const debug = require('debug')('dat')
+const debug = require('debug')('dweb')
 const url = require('url')
 const https = require('https')
 const Emitter = require('events')
@@ -8,8 +8,8 @@ const callMeMaybe = require('call-me-maybe')
 const concat = require('concat-stream')
 
 const DAT_HASH_REGEX = /^[0-9a-f]{64}?$/i
-const DAT_PROTOCOL_REGEX = /^dat:\/\/([0-9a-f]{64})/i
-const DAT_RECORD_NAME = 'dat'
+const DAT_PROTOCOL_REGEX = /^dweb:\/\/([0-9a-f]{64})/i
+const DAT_RECORD_NAME = 'dweb'
 const DAT_TXT_REGEX = /"?datkey=([0-9a-f]{64})"?/i
 const VERSION_REGEX = /(\+[^\/]+)$/
 const DEFAULT_DAT_DNS_TTL = 3600 // 1hr
@@ -275,7 +275,7 @@ function parseDnsOverHttpsRecord (datDns, name, body, dnsTxtRegex) {
 
 function fetchWellKnownRecord (name, recordName) {
   return new Promise((resolve, reject) => {
-    debug('.well-known/dat lookup for name:', name)
+    debug('.well-known/dweb lookup for name:', name)
     https.get({
       host: name,
       path: '/.well-known/' + recordName,

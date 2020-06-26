@@ -8,18 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/datprotocol/dat-dns.git"
+    "url": "git+https://github.com/datprotocol/dweb-dns.git"
   },
   "keywords": [
-    "dat",
+    "dweb",
     "dns"
   ],
   "author": "Paul Frazee <pfrazee@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/datprotocol/dat-dns/issues"
+    "url": "https://github.com/datprotocol/dweb-dns/issues"
   },
-  "homepage": "https://github.com/datprotocol/dat-dns#readme",
+  "homepage": "https://github.com/datprotocol/dweb-dns#readme",
   "dependencies": {
     "call-me-maybe": "^1.0.1",
     "concat-stream": "^1.6.0",
