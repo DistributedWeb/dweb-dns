@@ -1,14 +1,14 @@
-# dat-dns
+# dweb-dns
 
 Issue DNS lookups for Dat archives using HTTPS requests to the target host. Keeps an in-memory cache of recent lookups.
 
 ## API
 
 ```js
-var datDns = require('dat-dns')()
+var datDns = require('dweb-dns')()
 
 // or, if you have a custom protocol
-var datDns = require('dat-dns')({
+var datDns = require('dweb-dns')({
     recordName: /* name of .well-known file */
     protocolRegex: /* RegExp object for custom protocol */,
     hashRegex: /* RegExp object for custom hash i.e. */,
@@ -16,7 +16,7 @@ var datDns = require('dat-dns')({
 })
 
 // example: 
-var cabalDns = require('dat-dns')({
+var cabalDns = require('dweb-dns')({
     recordName: 'cabal',
     hashRegex: /^[0-9a-f]{64}?$/i,
     protocolRegex: /^cabal:\/\/([0-9a-f]{64})/i,
@@ -46,14 +46,14 @@ datDns.listCache()
 datDns.flushCache()
 
 // configure the DNS-over-HTTPS host used
-var datDns = require('dat-dns')({
+var datDns = require('dweb-dns')({
   dnsHost: 'dns.google.com',
   dnsPath: '/resolve'
 })
 
 // use a persistent fallback cache
 // (this is handy for persistent dns data when offline)
-var datDns = require('dat-dns')({
+var datDns = require('dweb-dns')({
   persistentCache: {
     read: async (name, err) => {
       // try lookup
