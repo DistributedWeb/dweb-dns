@@ -106,9 +106,6 @@ module.exports = function () {
       cleanExpired();
       if (options.onInterval) onInterval();
     }, options.interval * 1000);
-    if (typeof runningProcess.unref === 'function') {
-      runningProcess.unref()
-    }
   };
 
   var init = function init() {

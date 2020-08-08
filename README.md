@@ -1,27 +1,11 @@
-# dweb-dns
+# dat-dns
 
-Issue DNS lookups for DWeb archives using HTTPS requests to the target host. Keeps an in-memory cache of recent lookups.
+Issue DNS lookups for Dat archives using HTTPS requests to the target host. Keeps an in-memory cache of recent lookups.
 
 ## API
 
 ```js
-var datDns = require('dweb-dns')()
-
-// or, if you have a custom protocol
-var datDns = require('dweb-dns')({
-    recordName: /* name of .well-known file */
-    protocolRegex: /* RegExp object for custom protocol */,
-    hashRegex: /* RegExp object for custom hash i.e. */,
-    txtRegex: /* RegExp object for DNS TXT record of custom protocol */,
-})
-
-// example: 
-var cabalDns = require('dweb-dns')({
-    recordName: 'dmessenger',
-    hashRegex: /^[0-9a-f]{64}?$/i,
-    protocolRegex: /^dmessenger:\/\/([0-9a-f]{64})/i,
-    txtRegex: /^"?cabalkey=([0-9a-f]{64})"?$/i
-})
+var datDns = require('dat-dns')()
 
 // resolve a name: pass the hostname by itself
 datDns.resolveName('foo.com', function (err, key) { ... })
@@ -36,7 +20,7 @@ datDns.resolveName('foo.com', {ignoreCache: true})
 // dont use dns-over-https
 datDns.resolveName('foo.com', {noDnsOverHttps: true})
 
-// dont use .well-known/dweb
+// dont use .well-known/dat
 datDns.resolveName('foo.com', {noWellknownDat: true})
 
 // list all entries in the cache
@@ -46,14 +30,14 @@ datDns.listCache()
 datDns.flushCache()
 
 // configure the DNS-over-HTTPS host used
-var datDns = require('dweb-dns')({
+var datDns = require('dat-dns')({
   dnsHost: 'dns.google.com',
   dnsPath: '/resolve'
 })
 
 // use a persistent fallback cache
 // (this is handy for persistent dns data when offline)
-var datDns = require('dweb-dns')({
+var datDns = require('dat-dns')({
   persistentCache: {
     read: async (name, err) => {
       // try lookup
@@ -74,7 +58,7 @@ datDns.on('cache-flushed', () => {...})
 
 ## Spec
 
-[In detail.](https://www.dwebx.net/deps/0005-dns/)
+[In detail.](https://www.datprotocol.com/deps/0005-dns/)
 
 **Option 1 (DNS-over-HTTPS).** Create a DNS TXT record witht he following schema:
 
@@ -82,10 +66,10 @@ datDns.on('cache-flushed', () => {...})
 datkey={key}
 ```
 
-**Option 2 (.well-known/dweb).** Place a file at `/.well-known/dweb` with the following schema:
+**Option 2 (.well-known/dat).** Place a file at `/.well-known/dat` with the following schema:
 
 ```
-{dweb-url}
+{dat-url}
 TTL={time in seconds}
 ```
 
